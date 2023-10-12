@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+        <link
+            href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;700&display=swap"
+            rel="stylesheet"
+        />
+        <link rel="stylesheet" href="style/PRfreelancemoney.css" />
+        <link rel="icon" type="image/x-icon" href="image/calculator.png" />
+        <title>Freelance Money</title>
+    </head>
+    <body>
+        <header>
+            <h1>Freelance Money Calculator</h1>
+        </header>
+
+        <form action="" id="formCalculGain">
+            <div class="sectionCalcul pricing">
+                <fieldset class="form-Container">
+                    <legend>Vos Tarifs</legend>
+
+                    <div class="formField">
+                        <label>TH</label>
+                        <input
+                            class="formControl"
+                            type="number"
+                            name="TH"
+                            placeholder="ex : 70"
+                        />
+                    </div>
+
+                    <div class="formField">
+                        <label>TJM</label>
+                        <input
+                            class="formControl"
+                            type="number"
+                            name="TJM"
+                            placeholder="ex : 740"
+                        />
+                    </div>
+
+                    <div class="formField">
+                        <label>Extras</label>
+                        <input
+                            class="formControl"
+                            type="number"
+                            name="Extras"
+                            placeholder="ex : 47"
+                        />
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="sectionCalcul quantity">
+                <fieldset class="form-Container">
+                    <legend>Vos Quantités</legend>
+                    <div class="formField">
+                        <label>TH</label>
+                        <input
+                            class="formControl"
+                            type="number"
+                            name="QteTH"
+                            placeholder="ex : 140"
+                        />
+                    </div>
+
+                    <div class="formField">
+                        <label>TJM</label>
+                        <input
+                            class="formControl"
+                            type="number"
+                            name="QteTJM"
+                            placeholder="ex : 30"
+                        />
+                    </div>
+
+                    <div class="formField">
+                        <label>Extras</label>
+                        <input
+                            class="formControl"
+                            type="number"
+                            name="QteExtras"
+                            placeholder="ex : 7"
+                        />
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="sectionCalcul fees">
+                <!-- fees = charges-->
+
+                <fieldset class="form-Container">
+                    <legend>Charges</legend>
+                    <div class="formField">
+                        <label>charges</label>
+                        <select id="charges">
+                            <option value="5.5">5.5%</option>
+                            <option value="11">11%</option>
+                            <option value="16.5">16.5%</option>
+                            <option value="22">22%</option>
+                        </select>
+                    </div>
+                </fieldset>
+            </div>
+
+            <div class="sectionCalcul validation">
+                <button id="btnCalcul">Calculer</button>
+            </div>
+
+            <div class="sectionCalcul result">
+                <div class="form-container formResult">
+                    <div class="resultDiv resultBrut">
+                        <p>BRUT</p>
+                        <span id="resultatBrut">0€</span>
+                    </div>
+                    <div class="resultDiv resultDifference">
+                        <p>Taxes</p>
+                        <span id="resultatDifference">0€</span>
+                    </div>
+                    <div class="resultDiv resultNet">
+                        <p>NET</p>
+                        <span id="resultatNet">0€</span>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <script src="PRfreelanceMoney.js"></script>
+    </body>
+</html>
