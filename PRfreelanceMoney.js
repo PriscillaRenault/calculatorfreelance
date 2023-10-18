@@ -16,34 +16,43 @@ function CalculGain() {
     //On le transforme en obj formData
     let formObj = new FormData(myForm)
 
-    //On récupère tous nos input
-    let tauxHoraire = formObj.get('TH')
-    let tauxJournalier = formObj.get('TJM')
-    let Extras = formObj.get('Extras')
+    let myCalculDatas = {
+        tauxHoraire: formObj.get('TH'),
+        tauxJournalier: formObj.get('TJM'),
+        Extras: formObj.get('Extras'),
+        qteTauxHoraire: formObj.get('QteTH'),
+        qtetauxJournalier: formObj.get('QteTJM'),
+        qteExtras: formObj.get('QteExtras'),
+        charges: parseFloat(document.querySelector('#charges').value),
 
-    let qteTauxHoraire = formObj.get('QteTH')
-    let qtetauxJournalier = formObj.get('QteTJM')
-    let qteExtras = formObj.get('QteExtras')
+        //  calcul
+        gainHeure: function () {
+            return this.tauxHoraire * this.qteTauxHoraire
+        },
+        gainJour: function () {
+            return this.tauxJournalier * this.qtetauxJournalier
+        },
+        gainExtras: function () {
+            return this.Extras * this.qteExtras
+        },
 
-    let charges = formObj.get('charges')
+        calculBrut: function () {
+            return this.gainHeure() + this.gainJour() + this.gainExtras()
+        },
 
-    //  calcul
-    let gainHeure = tauxHoraire * qteTauxHoraire
-    let gainJour = tauxJournalier * qtetauxJournalier
-    let gainExtras = Extras * qteExtras
+        calculTaxes: function () {
+            return this.calculBrut() * (this.charges / 100)
+        },
 
-    let calculBrut = (gainHeure + gainJour + gainExtras).toFixed(2)
-
-    let taxes = document.getElementById('charges').value
-
-    let calculTaxes = (calculBrut * (taxes / 100)).toFixed(2)
-
-    let calculNet = calculBrut - calculTaxes
+        calculNet: function () {
+            return this.calculBrut() - this.calculTaxes()
+        },
+    }
 
     //Animer lecompteur
-    animateCounter('resultatBrut', calculBrut)
-    animateCounter('resultatDifference', calculTaxes)
-    animateCounter('resultatNet', calculNet)
+    animateCounter('resultatBrut', myCalculDatas.calculBrut())
+    animateCounter('resultatDifference', myCalculDatas.calculTaxes())
+    animateCounter('resultatNet', myCalculDatas.calculNet())
 }
 
 async function animateCounter(idToReplace, total) {
