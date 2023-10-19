@@ -7,52 +7,52 @@
 //convertir en pdf ou excel
 //animation
 
-function CalculGain() {
+function calcWin() {
     //verify input
     checkInputs()
     // on récupère le formulaire
-    let myForm = document.getElementById('formCalculGain')
+    let myForm = document.getElementById('formCalcWin')
 
     //On le transforme en obj formData
     let formObj = new FormData(myForm)
 
     let myCalculDatas = {
-        tauxHoraire: formObj.get('TH'),
-        tauxJournalier: formObj.get('TJM'),
-        Extras: formObj.get('Extras'),
-        qteTauxHoraire: formObj.get('QteTH'),
-        qtetauxJournalier: formObj.get('QteTJM'),
-        qteExtras: formObj.get('QteExtras'),
-        charges: parseFloat(document.querySelector('#charges').value),
+        rateHour: formObj.get('rateHour'),
+        rateDay: formObj.get('rateDay'),
+        Extras: formObj.get('extras'),
+        qtyRateHour: formObj.get('qtyRateHour'),
+        qtyRateDay: formObj.get('qtyRateDay'),
+        qtyExtras: formObj.get('qtyExtras'),
+        fees: parseFloat(document.querySelector('#fees').value),
 
         //  calcul
-        gainHeure: function () {
-            return this.tauxHoraire * this.qteTauxHoraire
+        profitHour: function () {
+            return this.rateHour * this.qtyRateHour
         },
-        gainJour: function () {
-            return this.tauxJournalier * this.qtetauxJournalier
+        profitDay: function () {
+            return this.rateDay * this.qtyRateDay
         },
-        gainExtras: function () {
-            return this.Extras * this.qteExtras
-        },
-
-        calculBrut: function () {
-            return this.gainHeure() + this.gainJour() + this.gainExtras()
+        profitExtras: function () {
+            return this.Extras * this.qtyExtras
         },
 
-        calculTaxes: function () {
-            return this.calculBrut() * (this.charges / 100)
+        calcGross: function () {
+            return this.profitHour() + this.profitDay() + this.profitExtras()
         },
 
-        calculNet: function () {
-            return this.calculBrut() - this.calculTaxes()
+        calcFees: function () {
+            return this.calcGross() * (this.fees / 100)
+        },
+
+        calcNet: function () {
+            return this.calcGross() - this.calcFees()
         },
     }
 
     //Animer lecompteur
-    animateCounter('resultatBrut', myCalculDatas.calculBrut())
-    animateCounter('resultatDifference', myCalculDatas.calculTaxes())
-    animateCounter('resultatNet', myCalculDatas.calculNet())
+    animateCounter('resultGross', myCalculDatas.calcGross().toFixed(2))
+    animateCounter('resultFees', myCalculDatas.calcFees().toFixed(2))
+    animateCounter('resultNet', myCalculDatas.calcNet().toFixed(2))
 }
 
 async function animateCounter(idToReplace, total) {
@@ -78,9 +78,7 @@ function timer(ms) {
 
 //check Input < 0
 function checkInputs() {
-    let mesInputs = document.querySelectorAll(
-        '#formCalculGain input.formControl'
-    )
+    let mesInputs = document.querySelectorAll('#formCalcWin input.formControl')
     mesInputs.forEach((monInput) => {
         if (monInput.value < 0) {
             monInput.value = 0
@@ -118,7 +116,7 @@ function getCookie(input) {
 // Mettre les éléments dans les inputs
 
 //rafraichir le résultat au changement de l'input
-let mesInputs = document.querySelectorAll('#formCalculGain input.formControl')
+let mesInputs = document.querySelectorAll('#formCalcWin input.formControl')
 // si il a une valeur en cookie lui donner
 
 mesInputs.forEach((monInput) => {
@@ -128,11 +126,11 @@ mesInputs.forEach((monInput) => {
         monInput.value = cookie
     }
 
-    monInput.addEventListener('change', CalculGain)
+    monInput.addEventListener('change', calcWin)
 })
 
 //calcul avec le bouton
 let btnCalc = document.getElementById('btnCalcul')
-btnCalc.addEventListener('click', CalculGain)
+btnCalc.addEventListener('click', calcWin)
 
-CalculGain()
+calcWin()

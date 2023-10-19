@@ -29,15 +29,15 @@ legend {
     font-weight: 500;
 }
 
-.formCalcul {
+.formCalc {
     border: dimgray 2px solid;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
 }
 
-.formCalcul,
-.sectionCalcul {
+.formCalc,
+.sectionCalc {
     margin: 15px;
 }
 
@@ -85,7 +85,7 @@ button {
     color: white;
 }
 
-.resultDifference {
+.resultFees {
     background-color: #797979;
     color: white;
 }

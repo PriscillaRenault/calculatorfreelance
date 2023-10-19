@@ -19,8 +19,8 @@
             <h1>Freelance Money Calculator</h1>
         </header>
 
-        <form action="" id="formCalculGain">
-            <div class="sectionCalcul pricing">
+        <form action="" id="formCalcWin">
+            <div class="sectionCalc pricing">
                 <fieldset class="form-Container">
                     <legend>Vos Tarifs</legend>
 
@@ -29,7 +29,7 @@
                         <input
                             class="formControl"
                             type="number"
-                            name="TH"
+                            name="rateHour"
                             placeholder="ex : 70"
                         />
                     </div>
@@ -39,7 +39,7 @@
                         <input
                             class="formControl"
                             type="number"
-                            name="TJM"
+                            name="rateDay"
                             placeholder="ex : 740"
                         />
                     </div>
@@ -49,14 +49,14 @@
                         <input
                             class="formControl"
                             type="number"
-                            name="Extras"
+                            name="extras"
                             placeholder="ex : 47"
                         />
                     </div>
                 </fieldset>
             </div>
 
-            <div class="sectionCalcul quantity">
+            <div class="sectionCalc quantity">
                 <fieldset class="form-Container">
                     <legend>Vos Quantités</legend>
                     <div class="formField">
@@ -64,7 +64,7 @@
                         <input
                             class="formControl"
                             type="number"
-                            name="QteTH"
+                            name="qtyRateHour"
                             placeholder="ex : 140"
                         />
                     </div>
@@ -74,7 +74,7 @@
                         <input
                             class="formControl"
                             type="number"
-                            name="QteTJM"
+                            name="qtyRateDay"
                             placeholder="ex : 30"
                         />
                     </div>
@@ -84,14 +84,14 @@
                         <input
                             class="formControl"
                             type="number"
-                            name="QteExtras"
+                            name="qtyExtras"
                             placeholder="ex : 7"
                         />
                     </div>
                 </fieldset>
             </div>
 
-            <div class="sectionCalcul fees">
+            <div class="sectionCalc sectionFees">
                 <!-- fees = ch
                     arges-->
 
@@ -99,7 +99,7 @@
                     <legend>Charges</legend>
                     <div class="formField">
                         <label>charges</label>
-                        <select id="charges">
+                        <select id="fees">
                             <option value="5.5">5.5%</option>
                             <option value="11">11%</option>
                             <option value="16.5">16.5%</option>
@@ -109,23 +109,23 @@
                 </fieldset>
             </div>
 
-            <div class="sectionCalcul validation">
+            <div class="sectionCalc validation">
                 <button id="btnCalcul">Calculer</button>
             </div>
 
-            <div class="sectionCalcul result">
+            <div class="sectionCalc result">
                 <div class="form-container formResult">
                     <div class="resultDiv resultBrut">
                         <p>BRUT</p>
-                        <span id="resultatBrut">0€</span>
+                        <span id="resultGross">0€</span>
                     </div>
                     <div class="resultDiv resultDifference">
                         <p>Taxes</p>
-                        <span id="resultatDifference">0€</span>
+                        <span id="resultFees">0€</span>
                     </div>
                     <div class="resultDiv resultNet">
                         <p>NET</p>
-                        <span id="resultatNet">0€</span>
+                        <span id="resultNet">0€</span>
                     </div>
                 </div>
             </div>
