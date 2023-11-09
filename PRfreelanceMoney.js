@@ -7,7 +7,7 @@
 //convertir en pdf ou excel
 //animation
 
-function calcWin() {
+function calcWin(event) {
     //verify input
     checkInputs()
     // on récupère le formulaire
@@ -23,8 +23,7 @@ function calcWin() {
         qtyRateHour: formObj.get('qtyRateHour'),
         qtyRateDay: formObj.get('qtyRateDay'),
         qtyExtras: formObj.get('qtyExtras'),
-        fees: parseFloat(document.querySelector('#fees').value),
-
+        feesValue: parseFloat(document.querySelector('#fees').value),
         //  calcul
         profitHour: function () {
             return this.rateHour * this.qtyRateHour
@@ -41,7 +40,7 @@ function calcWin() {
         },
 
         calcFees: function () {
-            return this.calcGross() * (this.fees / 100)
+            return this.calcGross() * (this.feesValue / 100)
         },
 
         calcNet: function () {
@@ -53,6 +52,8 @@ function calcWin() {
     animateCounter('resultGross', myCalculDatas.calcGross().toFixed(2))
     animateCounter('resultFees', myCalculDatas.calcFees().toFixed(2))
     animateCounter('resultNet', myCalculDatas.calcNet().toFixed(2))
+
+    event.preventDefault()
 }
 
 async function animateCounter(idToReplace, total) {
